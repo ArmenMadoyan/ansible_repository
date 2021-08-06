@@ -10,16 +10,4 @@
         - "{{ apache_package }}"
         - "{{ php_package }}"  
       state: latest  
-      update_cache: yes  
-
-      #in case we have other linux distribution like CentOS      
-      # - name: install httpd package
-      # dnf:                                     // package manager
-      # package:                                 // authomatically determines the package manager 
-      # name: httpd                              // the package name to install 
-      # state: latest                            // which version
-      # when: ansible_distribution == "CentOS"   // checks the values for the keys ex.
-      #                                          // ansible_distribution or ansible_distribuition_version
-      #name: 
-      #  - "{{ apache_package }}"                // variable for apache package
-      #  - "{{ php_package }}"                   // variable for php package specified in hosts file  
+      update_cache: yes        
