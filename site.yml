@@ -1,0 +1,61 @@
+---
+
+- hosts: linux_machines
+  become: true
+  tasks: 
+  
+  - name: install apache php and update - Ubuntu
+    apt:
+      name: 
+        - apache2
+        - libapache2-mod-php  
+      state: latest  
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+     
+
+- hosts: file_servers
+  become: true
+  tasks: 
+  
+  - name: install file server on Ubuntu
+    apt:
+      name: samba
+      state: latest  
+    when: ansible_distribution == "Ubuntu"
+     
+
+
+
+
+
+
+
+
+
+      #Commands 
+      #- hosts: all                              // refers to all hosts
+      #- hosts: web_servers                      // refers to hosts under web servers      
+      #  become:                                 // asks for sudo privileges
+      #
+      # pre_tasks:                                // same tasks: but starts first 
+      #
+      #
+      # -name: install httpd package
+      #
+      #
+      # dnf:                                     // package manager
+      # package:                                 // authomatically determines the package manager 
+      #
+      #
+      #   name: httpd                            // the package name to install 
+      #   name: 
+      #     - "{{ apache_package }}"             // variable for apache package
+      #     - "{{ php_package }}"                // variable for php package specified in hosts file  
+      #   state: latest                          // which version
+      #   update_cache: yes                      // to update 
+      #   upgrade: dist                          // upgrade for ubuntu
+      #
+      #
+      # when: ansible_distribution == "CentOS"    // checks the values for the keys ex.
+      #                                           // ansible_distribution or ansible_distribuition_version
