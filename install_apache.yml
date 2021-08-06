@@ -4,20 +4,22 @@
   become: true
   tasks: 
   
-  - name: update repository index
-    apt: 
-      update_cache: yes  
-    when: ansible_distribution in  ["Debian", "Ubuntu"] and ansible_distribution_version == "20.04"
-
-  - name: install apache2 package
-    apt:
-      name: apache2
+  - name: install apache php and update
+    package:
+      name: 
+        - "{{ apache_package }}"
+        - "{{ php_package }}"  
       state: latest  
-    when: ansible_distribution in ["Ubuntu", "Debian"]
+      update_cache: yes  
 
       #in case we have other linux distribution like CentOS      
       # - name: install httpd package
-      # dnf:
-      # name: httpd
-      # state: latest  
-      # when: ansible_distribution == "CentOS"
+      # dnf:                                     // package manager
+      # package:                                 // authomatically determines the package manager 
+      # name: httpd                              // the package name to install 
+      # state: latest                            // which version
+      # when: ansible_distribution == "CentOS"   // checks the values for the keys ex.
+      #                                          // ansible_distribution or ansible_distribuition_version
+      #name: 
+      #  - "{{ apache_package }}"                // variable for apache package
+      #  - "{{ php_package }}"                   // variable for php package specified in hosts file  
