@@ -5,6 +5,7 @@
   tasks: 
   
   - name: install apache php and update - Ubuntu
+    tags: apache, apache2, httpd
     apt:
       name: 
         - apache2
@@ -19,6 +20,7 @@
   tasks: 
   
   - name: install file server on Ubuntu
+    tags: samba
     apt:
       name: samba
       state: latest  
@@ -43,7 +45,7 @@
       #
       # -name: install httpd package
       #
-      #
+      # tags: always/apache/apache2/...          // always - run always, others should be targeted 
       # dnf:                                     // package manager
       # package:                                 // authomatically determines the package manager 
       #

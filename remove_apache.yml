@@ -1,6 +1,6 @@
 ---
 
-- hosts: all
+- hosts: linux_machines
   become: true
   tasks: 
 
@@ -8,3 +8,4 @@
     apt:
       name: apache2
       state: absent
+    when: ansible_distribution == "Ubuntu"    
